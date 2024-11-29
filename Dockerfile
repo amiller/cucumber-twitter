@@ -9,8 +9,8 @@ RUN apt-get install -y ./chromium_130.0.6723.58~linuxmint1+virginia_amd64.deb
 RUN apt-get install -y libasound2
 
 # For rust (not needed presently) later
-RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
-ENV PATH="/root/.cargo/bin:${PATH}"
+# RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
+# ENV PATH="/root/.cargo/bin:${PATH}"
 
 WORKDIR /workdir
 ENV PYTHONUNBUFFERED=1
@@ -18,8 +18,9 @@ ENV PYTHONUNBUFFERED=1
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
 
-COPY cucumber.py ./
+COPY cucumber/ ./cucumber/
 COPY scripts/ ./scripts/
+COPY telegram_test.py ./
 
 ENTRYPOINT [ ]
-CMD [ "python3", "cucumber.py" ]
+CMD [ "python3", "telegram_test.py" ]
