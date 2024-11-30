@@ -8,9 +8,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 def get_driver(): 
-    options = ChromeOptions(headless=True)
+    options = ChromeOptions()
     options.add_argument("--start-maximized")
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--no-sandbox')
-    driver = uc.Chrome(headless=headless, use_subprocess=False, options=options, browser_executable_path='/usr/bin/chromium')
+    driver = uc.Chrome(headless=True, use_subprocess=False, options=options, browser_executable_path='/usr/bin/chromium', version_main=130)
     return driver
